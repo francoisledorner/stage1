@@ -1,5 +1,11 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>Using P5.js</h1>
   </div>
 </template>
+    
+<script>
+import Rectangle from "@/api/Rectangle";
+new Rectangle(200, 100);
+</script>
+
