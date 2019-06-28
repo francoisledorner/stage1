@@ -1,8 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <button @click="callIt()">Click me!</button>
-
     <Plotly :data="donnees" :layout="layout" :display-mode-bar="false"></Plotly>
   </div>
 </template>
@@ -20,8 +17,8 @@ export default {
     return {
       donnees: [
         {
-          x: [1, 2, 3, 4],
-          y: [10, 15, 13, 17],
+          x: this.getX(),
+          y: this.getY(),
           type: "scatter"
         }
       ],
@@ -31,8 +28,11 @@ export default {
     };
   },
   methods: {
-    callIt() {
-      this.msg = "text";
+    getX() {
+      return [10, 15, 13, 17];
+    },
+    getY() {
+      return [10, 15, 13, 17];
     }
   }
 };
