@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: "Graph",
+  name: "GraphP5",
   mounted() {
     const script = function(p5) {
       var speed = 2;

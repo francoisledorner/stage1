@@ -38,7 +38,7 @@ const str =
 const minNoJobs = 0;
 const maxNoJobs = 12;
 export default {
-  name: "HelloWorld",
+  name: "MyTable",
   data() {
     return {
       rows: [
