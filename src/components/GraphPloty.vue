@@ -1,66 +1,74 @@
 <template>
   <div class="hello">
-    <Plotly :data="donnees" :layout="layout" :display-mode-bar="false"></Plotly>
-    <label for="eq">Enter an equation(4 * sin(x) + 5 * cos(x/2)):</label>
-    <input type="text" v-model="expression" />
+    <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
+    <label>Enter an equation(4 * sin(x) + 5 * cos(x/2)):</label>
+    <input type="text" v-model="expression">
     <button @click="callIt()">submit</button>
   </div>
 </template>
 
 <script>
-import { Plotly } from "vue-plotly";
-//import mathjs from "mathjs";
-//import { evaluate } from "mathjs";
+import VuePlotly from "@statnett/vue-plotly";
+
+import { create, all } from "mathjs";
+const config = {};
+const math = create(all, config);
 
 export default {
   name: "GraphPloty",
   components: {
-    Plotly
+    VuePlotly
   },
   data() {
     return {
       expression: "x",
-      mathjsCompliled: null,
       donnees: [
         {
-          x: [1, 2],
-          y: [2, 1],
+          x: [],
+          y: [],
           type: "scatter"
         }
       ],
-      layout: {
-        title: "My graph"
-      }
+      layout: {},
+      options: {}
     };
   },
   methods: {
     range() {},
     getX() {
-      return [1, 4, 8, 24]; //mathjs.range(-10, 10, 0.5).toArray();
+      return math.range(-10, 10, 1).toArray();
     },
     getY() {
       let me = this;
       return this.getX().map(valX => {
         return valX * 2;
-        //return me.mathjsCompliled.evaluate({ x: valX });
+        return me.mathjsCompliled.evaluate({ x: valX });
       });
     },
     callIt() {
-      //this.mathjsCompliled = mathjs.compile(this.expression);
-      //this.donnees.x = this.getX();
-      //this.donnees.y = this.getY();
+      this.mathjsCompliled = math.compile(this.expression);
+      this.donnees[0].x = this.getX();
+      this.donnees[0].y = this.getY();
       console.log("hello");
-      let me = this;
+
+      /*
+      this.donnees[0].x = [30, 40];
+      this.donnees[0].y = [30, 20];
+      */
+      /*
       this.donnees[0] = {
         x: me.getX(),
         y: me.getY(),
         type: "scatter"
       };
-      this.donnees[1] = {
+      */
+      /*
+      this.donnees[0] = {
         x: [30, 40],
         y: [30, 20],
         type: "scatter"
       };
+      */
     },
     call1({ x }) {
       console.log(x);
@@ -71,8 +79,6 @@ export default {
   }
 };
 </script>
-
-
 <style scoped >
 input[type="text"] {
   width: 300px;

@@ -3,7 +3,7 @@
     <Plotly data="donnees" layout="layout" display-mode-bar="true"></Plotly>
   </div>
 </template>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+ <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
 <script>
 import { Plotly } from "vue-plotly";
 
