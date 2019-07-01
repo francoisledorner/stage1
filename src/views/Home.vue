@@ -10,8 +10,5 @@
 
 export default {
   name: "home"
-  //components: { HelloWorld, GraphPloty }
-  /*
-   */
 };
 </script>

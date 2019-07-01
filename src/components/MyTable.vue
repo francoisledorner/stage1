@@ -26,21 +26,29 @@
 <script>
 import moment from "moment";
 import Personne from "@/api/Personne";
+import { A } from "@/api/Personne";
 import { create } from "domain";
+
 const minYear = 216; // 18 ans min
 const maxYear = 780; // 60 ans max
+
 const minMinutes = 1440; // 1 jour min
 const maxMinutes = 44640; // 31 jours max
+
 const minSeconds = 60; // 1 minute min
 const maxSeconds = 86400; // 1 jour max
+
 const str =
   "Software developer,Medical services manager,Registered nurse,Medical technologist,Construction laborer,Nursing assistant,Accountant,Aerospace Engineer,Agricultural Lender,Phone Banker,Mechanical Engineer,Chemical Engineer";
 const minNoJobs = 0;
 const maxNoJobs = 12;
+
 export default {
   name: "MyTable",
   data() {
     return {
+      mavariable: "valeur",
+      monobjetcomplexe: { x: { x1: "a" } },
       rows: [
         new Personne(1, "Chandler Bing", this.randomDate(), this.randomJob()),
         new Personne(2, "Ross Geller", this.randomDate(), this.randomJob()),
@@ -64,6 +72,11 @@ export default {
       let randomYear =
         Math.floor(Math.random() * (+maxYear - +minYear)) + +minYear;
       return randomYear;
+    },
+    getFull() {
+      return (
+        this.getRdyear() + "-" + this.getRdminutes() + "-" + this.getRdseconds()
+      );
     },
     getRdminutes() {
       let randomMinutes =

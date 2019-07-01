@@ -9,3 +9,4 @@ export default class Personne {
     return `${this.id} ${this.name} ${this.date} ${this.profession}`;
   }
 }
+export const A = "A";

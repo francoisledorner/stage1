@@ -3,6 +3,7 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import MyTable from "./components/MyTable.vue";
 import GraphPloty from "./components/GraphPloty.vue";
+import JouerAvecPlotly from "./components/JouerAvecPlotly.vue";
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: "/GraphPloty",
       name: "GraphPloty",
       component: GraphPloty
+    },
+    {
+      path: "/JouerAvecPlotly",
+      name: "JoueravecPlotly",
+      component: JouerAvecPlotly
     },
     {
       path: "/about",
