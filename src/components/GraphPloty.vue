@@ -7,6 +7,8 @@
     </label>
     <input type="text" v-model="expression" placeholder="enter equation here" required />
     <button @click="ButtonPressed()">submit</button>
+    <br />
+    {{expressionWatched}}
   </div>
 </template>
 
@@ -33,18 +35,24 @@ export default {
         }
       ],
       layout: {},
-      options: {}
+      options: {},
+
+      expressionWatched: ""
     };
+  },
+  watch: {
+    expression(val) {
+      this.expressionWatched = val;
+    }
   },
   methods: {
     range() {},
     getX() {
-      return math.range(-10, 10, 1).toArray();
+      return math.range(-10, 10, 0.1).toArray();
     },
     getY() {
       let me = this;
       return this.getX().map(valX => {
-        return valX * 2;
         return me.mathjsCompliled.evaluate({ x: valX });
       });
     },
