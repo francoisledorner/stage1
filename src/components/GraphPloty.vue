@@ -1,9 +1,12 @@
 <template>
   <div class="hello">
     <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
-    <label>Enter an equation(4 * sin(x) + 5 * cos(x/2)):</label>
-    <input type="text" v-model="expression">
-    <button @click="callIt()">submit</button>
+    <label>
+      Enter an equation -
+      example: (4 * sin(x) + 5 * cos(x/2)):
+    </label>
+    <input type="text" v-model="expression" placeholder="enter equation here" required />
+    <button @click="ButtonPressed()">submit</button>
   </div>
 </template>
 
@@ -21,7 +24,7 @@ export default {
   },
   data() {
     return {
-      expression: "x",
+      expression: "",
       donnees: [
         {
           x: [],
@@ -45,11 +48,11 @@ export default {
         return me.mathjsCompliled.evaluate({ x: valX });
       });
     },
-    callIt() {
+    ButtonPressed() {
       this.mathjsCompliled = math.compile(this.expression);
       this.donnees[0].x = this.getX();
       this.donnees[0].y = this.getY();
-      console.log("hello");
+      console.log("working");
 
       /*
       this.donnees[0].x = [30, 40];
@@ -64,21 +67,16 @@ export default {
       */
       /*
       this.donnees[0] = {
-        x: [30, 40],
-        y: [30, 20],
+        x: [],
+        y: [],
         type: "scatter"
-      };
-      */
-    },
-    call1({ x }) {
-      console.log(x);
-    },
-    call2() {
-      this.call1({ x: 3 });
+        */
     }
   }
 };
 </script>
+
+
 <style scoped >
 input[type="text"] {
   width: 300px;
