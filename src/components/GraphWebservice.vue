@@ -1,9 +1,8 @@
 <template>
-  <div class="hello">
+  <div>
     <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
 
     <button @click="ButtonPressed()">submit</button>
-    <br />
   </div>
 </template>
 
@@ -14,21 +13,25 @@ import { create, all } from "mathjs";
 const config = {};
 const math = create(all, config);
 
+import axios from "axios";
+import { json } from "body-parser";
+
+//X coordinates
+const maxX = 20;
+const minX = -20;
+//Y coordinates
+const maxY = 20;
+const minY = -20;
+
 export default {
-  name: "GraphPloty",
+  name: "GraphWebservice",
   components: {
     VuePlotly
   },
   data() {
     return {
       expression: "",
-      donnees: [
-        {
-          x: [],
-          y: [],
-          type: "scatter"
-        }
-      ],
+      donnees: null,
       layout: {},
       options: {}
     };
@@ -36,12 +39,37 @@ export default {
   methods: {
     range() {},
     ButtonPressed() {
-      //TODO appel webservice avec AXIOS
-      this.donnees[0].x = [];
-      this.donnees[0].y = [];
+      axios
+        .get(
+          "https://raw.githubusercontent.com/francoisledorner/stage1/master/public/data.json"
+        )
+        .then(response => (this.donnees = response.data.donnees))
+        .catch(error => console.log(error));
     }
+  },
+
+  RdmXCoord() {
+    let randomXcoord = Math.floor(Math.random() * (+maxX - +minX)) + +minX;
+    return randomXcoord;
+  },
+
+  RdmYCoord() {
+    let randomYcoord = Math.floor(Math.random() * (+maxY - +minY)) + +minY;
+    return randomYcoord;
   }
 };
+
+/*
+JSON.stringify({
+  CoordinateX: this.RdmXCoord(),
+  CoordinateY: this.RdmYCoord()
+});
+
+JSON.parse({
+  CoordinateX: this.RdmXCoord(),
+  CoordinateY: this.RdmYCoord()
+});
+*/
 </script>
 
 

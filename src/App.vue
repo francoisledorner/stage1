@@ -3,8 +3,9 @@
     <div id="nav">
       <router-link to="/">Home</router-link>|
       <router-link to="/MyTable">MyTable</router-link>|
-      <router-link to="/GraphPloty">GraphPloty</router-link>|
-      <router-link to="/JouerAvecPlotly">JouerAvecPlotly</router-link>|
+      <router-link to="/GraphPloty">GraphPlotly</router-link>|
+      <router-link to="/GraphWebservice">Graph - Webservice</router-link>|
+      <router-link to="/JouerAvecPlotly">Jouer avec Plotly</router-link>|
       <router-link to="/about">About</router-link>
     </div>
     <router-view />

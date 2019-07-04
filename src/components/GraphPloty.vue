@@ -1,14 +1,15 @@
 <template>
-  <div class="hello">
-    <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
+  <div>
     <label>
       Enter an equation -
-      example: (4 * sin(x) + 5 * cos(x/2)):
+      example: (4 * sin(x) + 5 * cos(x/2))
+      example: (sin(cos(tan(x)))*sin(cos(tan(x)))) :
     </label>
     <input type="text" v-model="expression" placeholder="enter equation here" required />
-    <button @click="ButtonPressed()">submit</button>
+    <button @click="ButtonPressed()">Draw</button>
     <br />
-    {{expressionWatched}}
+    <p>Expected Output: {{ expressionWatched }}</p>
+    <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
   </div>
 </template>
 
