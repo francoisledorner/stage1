@@ -1,8 +1,7 @@
 <template>
   <div>
     <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
-
-    <button @click="ButtonPressed()">Draw</button>
+    <VuePlotly :data="donnees2" :layout="layout2" :options="options2"></VuePlotly>
   </div>
 </template>
 
@@ -15,60 +14,40 @@ const math = create(all, config);
 
 import axios from "axios";
 
-//X coordinates
-const maxX = 20;
-const minX = -20;
-//Y coordinates
-const maxY = 20;
-const minY = -20;
-
 export default {
-  name: "GraphWebservice",
+  name: "MySimpleMovingAvg",
   components: {
     VuePlotly
   },
   data() {
     return {
-      expression: "",
-      donnees: null,
-      layout: {},
-      options: {}
+      donnees: [
+        {
+          x: [-3.84, -2.59, -0.64, 1.87, 4.45, 6.99, 8.68],
+          y: [1.26, 2.15, 3.1, 3.36, 2.86, 1.74, 1.2]
+        }
+      ],
+      layout: { title: "Normal Graph" },
+      options: {},
+      donnees2: [
+        {
+          x: [
+            math.median(-3.84, -2.59, -0.64),
+            math.median(1.87, 4.45),
+            math.median(6.99, 8.68)
+          ],
+          y: [
+            math.median(1.26, 2.15, 3.1),
+            math.median(3.36, 2.86),
+            math.median(1.74, 1.2)
+          ]
+        }
+      ],
+      layout2: { title: "Simple Moving Average" },
+      options2: {}
     };
-  },
-  methods: {
-    range() {},
-    ButtonPressed() {
-      axios
-        .get(
-          "https://raw.githubusercontent.com/francoisledorner/stage1/master/public/data.json"
-        )
-        .then(response => (this.donnees = response.data.donnees))
-        .catch(error => console.log(error));
-    }
-  },
-
-  RdmXCoord() {
-    let randomXcoord = Math.floor(Math.random() * (+maxX - +minX)) + +minX;
-    return randomXcoord;
-  },
-
-  RdmYCoord() {
-    let randomYcoord = Math.floor(Math.random() * (+maxY - +minY)) + +minY;
-    return randomYcoord;
   }
 };
-
-/*
-JSON.stringify({
-  CoordinateX: this.RdmXCoord(),
-  CoordinateY: this.RdmYCoord()
-});
-
-JSON.parse({
-  CoordinateX: this.RdmXCoord(),
-  CoordinateY: this.RdmYCoord()
-});
-*/
 </script>
 
 
