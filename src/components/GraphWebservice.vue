@@ -2,7 +2,7 @@
   <div>
     <VuePlotly :data="donnees" :layout="layout" :options="options"></VuePlotly>
 
-    <button @click="ButtonPressed()">submit</button>
+    <button @click="ButtonPressed()">Draw</button>
   </div>
 </template>
 
@@ -14,7 +14,6 @@ const config = {};
 const math = create(all, config);
 
 import axios from "axios";
-import { json } from "body-parser";
 
 //X coordinates
 const maxX = 20;

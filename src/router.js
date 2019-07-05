@@ -4,7 +4,8 @@ import Home from "./views/Home.vue";
 import MyTable from "./components/MyTable.vue";
 import GraphPloty from "./components/GraphPloty.vue";
 import GraphWebservice from "./components/GraphWebservice.vue";
-//import JouerAvecPlotly from "./components/JouerAvecPlotly.vue";
+import UsingAxios from "./components/UsingAxios.vue";
+import JouerAvecPlotly from "./components/JouerAvecPlotly.vue";
 
 Vue.use(Router);
 
@@ -32,13 +33,16 @@ export default new Router({
       name: "GraphWebservice",
       component: GraphWebservice
     },
-    /*
+    {
+      path: "/UsingAxios",
+      name: "UsingAxios",
+      component: UsingAxios
+    },
     {
       path: "/JouerAvecPlotly",
       name: "JoueravecPlotly",
       component: JouerAvecPlotly
     },
-    */
     {
       path: "/about",
       name: "about",
