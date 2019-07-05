@@ -11,7 +11,7 @@
         |
         <router-link class="btn4" to="/GraphWebservice">Graph - Webservice</router-link>|
         |
-        <router-link class="btn1" to="/UsingAxios">Graph - UsingAxios</router-link>|
+        <router-link class="btn1" to="/MySimpleMovingAvg">Graph - SMA</router-link>|
         |
         <router-link class="btn2" to="/JouerAvecPlotly">Jouer avec Plotly</router-link>|
         |
